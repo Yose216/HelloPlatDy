@@ -170,20 +170,6 @@ class Feedback
     }
 
     /**
-     * Set idFeedback
-     *
-     * @param integer $idFeedback
-     *
-     * @return Feedback
-     */
-    public function setIdFeedback($idFeedback)
-    {
-        $this->idFeedback = $idFeedback;
-
-        return $this;
-    }
-
-    /**
      * Get idFeedback
      *
      * @return integer
