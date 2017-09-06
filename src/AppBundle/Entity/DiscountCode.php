@@ -52,7 +52,7 @@ class DiscountCode
      *
      * @ORM\Column(name="id_discount_code", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idDiscountCode;
 
@@ -209,20 +209,6 @@ class DiscountCode
     public function getDiscountCodeFinish()
     {
         return $this->discountCodeFinish;
-    }
-
-    /**
-     * Set idDiscountCode
-     *
-     * @param integer $idDiscountCode
-     *
-     * @return DiscountCode
-     */
-    public function setIdDiscountCode($idDiscountCode)
-    {
-        $this->idDiscountCode = $idDiscountCode;
-
-        return $this;
     }
 
     /**

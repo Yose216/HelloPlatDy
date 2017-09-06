@@ -119,6 +119,17 @@ class Restaurant
      */
     private $idRestaurant;
 
+    /**
+     * @var \AppBundle\Entity\User
+     *
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
+     * })
+     */
+    private $idUser;
+
 
 
     /**
@@ -465,5 +476,29 @@ class Restaurant
     public function getIdRestaurant()
     {
         return $this->idRestaurant;
+    }
+
+    /**
+     * Set idUser
+     *
+     * @param \AppBundle\Entity\User $idUser
+     *
+     * @return Feedback
+     */
+    public function setIdUser(\AppBundle\Entity\User $idUser)
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * Get idUser
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
     }
 }

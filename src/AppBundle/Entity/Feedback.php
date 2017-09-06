@@ -45,7 +45,7 @@ class Feedback
      *
      * @ORM\Column(name="id_feedback", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idFeedback;
 
