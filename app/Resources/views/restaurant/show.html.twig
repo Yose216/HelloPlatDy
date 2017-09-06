@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Restaurant</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Restaurantname</th>
+                <td>{{ restaurant.restaurantName }}</td>
+            </tr>
+            <tr>
+                <th>Restaurantmail</th>
+                <td>{{ restaurant.restaurantMail }}</td>
+            </tr>
+            <tr>
+                <th>Restaurantstreet</th>
+                <td>{{ restaurant.restaurantStreet }}</td>
+            </tr>
+            <tr>
+                <th>Restauranttown</th>
+                <td>{{ restaurant.restaurantTown }}</td>
+            </tr>
+            <tr>
+                <th>Restaurantzipcode</th>
+                <td>{{ restaurant.restaurantZipCode }}</td>
+            </tr>
+            <tr>
+                <th>Restauranthorairemonday</th>
+                <td>{{ restaurant.restaurantHoraireMonday }}</td>
+            </tr>
+            <tr>
+                <th>Restauranthorairetuesday</th>
+                <td>{{ restaurant.restaurantHoraireTuesday }}</td>
+            </tr>
+            <tr>
+                <th>Restauranthorairewednesday</th>
+                <td>{{ restaurant.restaurantHoraireWednesday }}</td>
+            </tr>
+            <tr>
+                <th>Restauranthorairethursday</th>
+                <td>{{ restaurant.restaurantHoraireThursday }}</td>
+            </tr>
+            <tr>
+                <th>Restauranthorairefriday</th>
+                <td>{{ restaurant.restaurantHoraireFriday }}</td>
+            </tr>
+            <tr>
+                <th>Restauranthorairesaturday</th>
+                <td>{{ restaurant.restaurantHoraireSaturday }}</td>
+            </tr>
+            <tr>
+                <th>Restauranthorairesunday</th>
+                <td>{{ restaurant.restaurantHoraireSunday }}</td>
+            </tr>
+            <tr>
+                <th>Restaurantcategory</th>
+                <td>{{ restaurant.restaurantCategory }}</td>
+            </tr>
+            <tr>
+                <th>Restaurantdescription</th>
+                <td>{{ restaurant.restaurantDescription }}</td>
+            </tr>
+            <tr>
+                <th>Idrestaurant</th>
+                <td>{{ restaurant.idRestaurant }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('restaurant_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('restaurant_edit', { 'idRestaurant': restaurant.idRestaurant }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

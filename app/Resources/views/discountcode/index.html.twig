@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Discountcodes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Discountcode</th>
+                <th>Discountcodeoffer</th>
+                <th>Discountcodedescription</th>
+                <th>Discountcodestart</th>
+                <th>Discountcodefinish</th>
+                <th>Iddiscountcode</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for discountCode in discountCodes %}
+            <tr>
+                <td><a href="{{ path('discountcode_show', { 'idDiscountCode': discountCode.idDiscountCode }) }}">{{ discountCode.discountCode }}</a></td>
+                <td>{{ discountCode.discountCodeOffer }}</td>
+                <td>{{ discountCode.discountCodeDescription }}</td>
+                <td>{% if discountCode.discountCodeStart %}{{ discountCode.discountCodeStart|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if discountCode.discountCodeFinish %}{{ discountCode.discountCodeFinish|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ discountCode.idDiscountCode }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('discountcode_show', { 'idDiscountCode': discountCode.idDiscountCode }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('discountcode_edit', { 'idDiscountCode': discountCode.idDiscountCode }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('discountcode_new') }}">Create a new discountCode</a>
+        </li>
+    </ul>
+{% endblock %}

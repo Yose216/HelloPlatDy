@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Restaurants list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Restaurantname</th>
+                <th>Restaurantmail</th>
+                <th>Restaurantstreet</th>
+                <th>Restauranttown</th>
+                <th>Restaurantzipcode</th>
+                <th>Restauranthorairemonday</th>
+                <th>Restauranthorairetuesday</th>
+                <th>Restauranthorairewednesday</th>
+                <th>Restauranthorairethursday</th>
+                <th>Restauranthorairefriday</th>
+                <th>Restauranthorairesaturday</th>
+                <th>Restauranthorairesunday</th>
+                <th>Restaurantcategory</th>
+                <th>Restaurantdescription</th>
+                <th>Idrestaurant</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for restaurant in restaurants %}
+            <tr>
+                <td><a href="{{ path('restaurant_show', { 'idRestaurant': restaurant.idRestaurant }) }}">{{ restaurant.restaurantName }}</a></td>
+                <td>{{ restaurant.restaurantMail }}</td>
+                <td>{{ restaurant.restaurantStreet }}</td>
+                <td>{{ restaurant.restaurantTown }}</td>
+                <td>{{ restaurant.restaurantZipCode }}</td>
+                <td>{{ restaurant.restaurantHoraireMonday }}</td>
+                <td>{{ restaurant.restaurantHoraireTuesday }}</td>
+                <td>{{ restaurant.restaurantHoraireWednesday }}</td>
+                <td>{{ restaurant.restaurantHoraireThursday }}</td>
+                <td>{{ restaurant.restaurantHoraireFriday }}</td>
+                <td>{{ restaurant.restaurantHoraireSaturday }}</td>
+                <td>{{ restaurant.restaurantHoraireSunday }}</td>
+                <td>{{ restaurant.restaurantCategory }}</td>
+                <td>{{ restaurant.restaurantDescription }}</td>
+                <td>{{ restaurant.idRestaurant }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('restaurant_show', { 'idRestaurant': restaurant.idRestaurant }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('restaurant_edit', { 'idRestaurant': restaurant.idRestaurant }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('restaurant_new') }}">Create a new restaurant</a>
+        </li>
+    </ul>
+{% endblock %}
