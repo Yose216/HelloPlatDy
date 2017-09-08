@@ -76,11 +76,11 @@ class DiscountCode
      *     @ORM\JoinColumn(name="id_discount_code", referencedColumnName="id_discount_code")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
+     *     @ORM\JoinColumn(name="id", referencedColumnName="id")
      *   }
      * )
      */
-    private $idUser;
+    private $id;
 
     /**
      * Constructor
@@ -248,13 +248,13 @@ class DiscountCode
     /**
      * Add idUser
      *
-     * @param \AppBundle\Entity\User $idUser
+     * @param \AppBundle\Entity\User $id
      *
      * @return DiscountCode
      */
-    public function addIdUser(\AppBundle\Entity\User $idUser)
+    public function addIdUser(\AppBundle\Entity\User $id)
     {
-        $this->idUser[] = $idUser;
+        $this->id[] = $id;
 
         return $this;
     }
@@ -262,11 +262,11 @@ class DiscountCode
     /**
      * Remove idUser
      *
-     * @param \AppBundle\Entity\User $idUser
+     * @param \AppBundle\Entity\User $id
      */
-    public function removeIdUser(\AppBundle\Entity\User $idUser)
+    public function removeIdUser(\AppBundle\Entity\User $id)
     {
-        $this->idUser->removeElement($idUser);
+        $this->id->removeElement($id);
     }
 
     /**
@@ -276,6 +276,6 @@ class DiscountCode
      */
     public function getIdUser()
     {
-        return $this->idUser;
+        return $this->id;
     }
 }

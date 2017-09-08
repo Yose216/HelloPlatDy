@@ -24,7 +24,7 @@ class User extends BaseUser
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\DiscountCode", mappedBy="idUser")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\DiscountCode", mappedBy="id")
      */
     protected $idDiscountCode;
 

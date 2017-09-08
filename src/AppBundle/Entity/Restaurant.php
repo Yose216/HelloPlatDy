@@ -125,10 +125,10 @@ class Restaurant
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
+     *   @ORM\JoinColumn(name="id", referencedColumnName="id")
      * })
      */
-    private $idUser;
+    private $id;
 
 
 
@@ -481,13 +481,13 @@ class Restaurant
     /**
      * Set idUser
      *
-     * @param \AppBundle\Entity\User $idUser
+     * @param \AppBundle\Entity\User $id
      *
      * @return Feedback
      */
-    public function setIdUser(\AppBundle\Entity\User $idUser)
+    public function setIdUser(\AppBundle\Entity\User $id)
     {
-        $this->idUser = $idUser;
+        $this->id = $id;
 
         return $this;
     }
@@ -499,6 +499,6 @@ class Restaurant
      */
     public function getIdUser()
     {
-        return $this->idUser;
+        return $this->id;
     }
 }

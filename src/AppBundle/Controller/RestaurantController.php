@@ -40,6 +40,11 @@ class RestaurantController extends Controller
     public function newAction(Request $request)
     {
         $restaurant = new Restaurant();
+
+        $user = $this->getUser();
+        $restaurant->setIdUser($user);
+        //var_dump($user);
+
         $form = $this->createForm('AppBundle\Form\RestaurantType', $restaurant);
         $form->handleRequest($request);
 
@@ -101,7 +106,7 @@ class RestaurantController extends Controller
     /**
      * Deletes a restaurant entity.
      *
-     * @Route("/{idRestaurant}", name="restaurant_delete")
+     * @Route("delete/{idRestaurant}", name="restaurant_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Restaurant $restaurant)
