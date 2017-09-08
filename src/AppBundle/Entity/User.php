@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
-use Doctrine\ORM\Mapping as ORM;;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * User
@@ -15,13 +15,11 @@ class User extends BaseUser
 {
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_user", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $idUser;
+    protected $id;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -35,18 +33,8 @@ class User extends BaseUser
      */
     public function __construct()
     {
+        parent::__construct();
         $this->idDiscountCode = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-
-    /**
-     * Get idUser
-     *
-     * @return integer
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
     }
 
     /**
