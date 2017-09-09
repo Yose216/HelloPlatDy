@@ -3,9 +3,9 @@ security:
         FOS\UserBundle\Model\UserInterface: sha512
 
     role_hierarchy:
-        ROLE8RESTAURANT: ROLE_USER
-        ROLE_USER:       ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_USER:       ROLE_UTILI
+        ROLE_RESTAURANT: ROLE_RESTAURANT
+        ROLE_SUPER_ADMIN: ROLE_SUPER_ADMIN
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username
@@ -24,6 +24,6 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin, role: ROLE_ADMIN }
+        - { path: ^/admin, role: ROLE_SUPER_ADMIN }
         - { path: /restaurant/new, role: ROLE_RESTAURANT }
         - { path: /restaurant/[0-9]/edit, role: ROLE_RESTAURANT }

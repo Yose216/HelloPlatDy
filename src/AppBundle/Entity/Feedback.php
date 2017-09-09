@@ -36,7 +36,7 @@ class Feedback
     /**
      * @var string
      *
-     * @ORM\Column(name="feedback_date", type="string", length=45, nullable=false)
+     * @ORM\Column(name="feedback_date", type="datetime", nullable=false)
      */
     private $feedbackDate;
 
@@ -53,7 +53,7 @@ class Feedback
      * @var \AppBundle\Entity\Restaurant
      *
      * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Restaurant")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Restaurant")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_restaurant", referencedColumnName="id_restaurant")
      * })
@@ -64,9 +64,9 @@ class Feedback
      * @var \AppBundle\Entity\User
      *
      * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id")
      * })
      */
     private $id;
@@ -148,7 +148,7 @@ class Feedback
     /**
      * Set feedbackDate
      *
-     * @param string $feedbackDate
+     * @param /DateTime $feedbackDate
      *
      * @return Feedback
      */
@@ -162,7 +162,7 @@ class Feedback
     /**
      * Get feedbackDate
      *
-     * @return string
+     * @return /DateTime
      */
     public function getFeedbackDate()
     {
@@ -204,7 +204,7 @@ class Feedback
     }
 
     /**
-     * Set idUser
+     * Set id
      *
      * @param \AppBundle\Entity\User $id
      *
@@ -218,7 +218,7 @@ class Feedback
     }
 
     /**
-     * Get idUser
+     * Get id
      *
      * @return \AppBundle\Entity\User
      */

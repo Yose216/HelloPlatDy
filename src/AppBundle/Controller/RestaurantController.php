@@ -41,9 +41,9 @@ class RestaurantController extends Controller
     {
         $restaurant = new Restaurant();
 
+        // Set id of user connected on restaurant created
         $user = $this->getUser();
         $restaurant->setIdUser($user);
-        //var_dump($user);
 
         $form = $this->createForm('AppBundle\Form\RestaurantType', $restaurant);
         $form->handleRequest($request);

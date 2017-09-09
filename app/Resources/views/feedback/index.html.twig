@@ -20,7 +20,7 @@
                 <td><a href="{{ path('feedback_show', { 'idFeedback': feedback.idFeedback }) }}">{{ feedback.feedbackRating }}</a></td>
                 <td>{{ feedback.feedbackTitle }}</td>
                 <td>{{ feedback.feedbackComments }}</td>
-                <td>{{ feedback.feedbackDate }}</td>
+                <td>{{ feedback.feedbackDate|date('d-m-Y') }}</td>
                 <td>{{ feedback.idFeedback }}</td>
                 <td>
                     <ul>

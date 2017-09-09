@@ -40,6 +40,19 @@ class DiscountCodeController extends Controller
     public function newAction(Request $request)
     {
         $discountCode = new Discountcode();
+
+        // Get id of user connected
+        $user = $this->getUser();
+        $user = $user->getId();
+
+        $em = $this->getDoctrine()->getManager();
+
+        // find restaurant associated of user
+        $restaurant = $em->getRepository('AppBundle:Restaurant')->find($user);
+
+        //Set restaurant id of discount code created
+        $discountCode->setIdRestaurant($restaurant);
+
         $form = $this->createForm('AppBundle\Form\DiscountCodeType', $discountCode);
         $form->handleRequest($request);
 

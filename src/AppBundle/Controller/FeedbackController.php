@@ -5,7 +5,10 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Feedback;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+//use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Feedback controller.
@@ -39,7 +42,16 @@ class FeedbackController extends Controller
      */
     public function newAction(Request $request)
     {
+
         $feedback = new Feedback();
+
+        //Set id of user connected
+        $user = $this->getUser();
+        $feedback->setIdUser($user);
+
+        // Set current date time of feedback
+        $feedback->setFeedbackDate(new \DateTime());
+
         $form = $this->createForm('AppBundle\Form\FeedbackType', $feedback);
         $form->handleRequest($request);
 

@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class FeedbackType extends AbstractType
 {
@@ -14,12 +15,20 @@ class FeedbackType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('feedbackRating')->add('feedbackTitle')->add('feedbackComments')->add('feedbackDate')->add('idRestaurant', EntityType::class, array(
+        $builder->add('feedbackRating', ChoiceType::class, array(
+                    'choices'  => array(
+                        '1' => 1,
+                        '2' => 2,
+                        '3' => 3,
+                        '4' => 4,
+                        '5' => 5,
+                    )))
+        ->add('feedbackTitle')->add('feedbackComments')->add('idRestaurant', EntityType::class, array(
         'class' => 'AppBundle:Restaurant',
         'choice_label' => function($restaurant, $key, $index) {
         $name = $restaurant->getRestaurantName();
         return strtoupper($name);
-        }))->add('idUser');
+        }));
     }
     
     /**

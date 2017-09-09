@@ -14,12 +14,7 @@ class DiscountCodeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('discountCode')->add('discountCodeOffer')->add('discountCodeDescription')->add('discountCodeStart')->add('discountCodeFinish')->add('idRestaurant', EntityType::class, array(
-        'class' => 'AppBundle:Restaurant',
-        'choice_label' => function($restaurant, $key, $index) {
-        $name = $restaurant->getRestaurantName();
-        return strtoupper($name);
-        }))->add('idUser');
+        $builder->add('discountCode')->add('discountCodeOffer')->add('discountCodeDescription')->add('discountCodeStart')->add('discountCodeFinish')->add('idUser');
     }
     
     /**
