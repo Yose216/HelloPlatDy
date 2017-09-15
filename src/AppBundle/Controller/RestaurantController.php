@@ -3,9 +3,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Restaurant;
+use AppBundle\Entity\Feedback;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Restaurant controller.
@@ -68,13 +70,31 @@ class RestaurantController extends Controller
      * @Route("/{idRestaurant}", name="restaurant_show")
      * @Method("GET")
      */
-    public function showAction(Restaurant $restaurant)
+    public function showAction(Restaurant $restaurant, Request $request)
     {
         $deleteForm = $this->createDeleteForm($restaurant);
+
+        $feedbackForm = "test";
+
+        if ($this->isGranted('ROLE_USER') == true) {
+            $feedback = new Feedback;
+            $feedbackForm = $this->createForm('AppBundle\Form\FeedbackType', $feedback);
+            $feedbackForm->handleRequest($request);
+
+            if ($feedbackForm->isSubmitted() && $feedbackForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($feedback);
+                $em->flush();
+
+                return $this->redirectToRoute('restaurant_show', array('idRestaurant' => $restaurant->getIdrestaurant()));
+            }
+            $feedbackForm = $feedbackForm->createView();
+        }
 
         return $this->render('restaurant/show.html.twig', array(
             'restaurant' => $restaurant,
             'delete_form' => $deleteForm->createView(),
+            'feedback_form' => $feedbackForm
         ));
     }
 
