@@ -23,12 +23,7 @@ class FeedbackType extends AbstractType
                         '4' => 4,
                         '5' => 5,
                     )))
-        ->add('feedbackTitle')->add('feedbackComments')->add('idRestaurant', EntityType::class, array(
-        'class' => 'AppBundle:Restaurant',
-        'choice_label' => function($restaurant, $key, $index) {
-        $name = $restaurant->getRestaurantName();
-        return strtoupper($name);
-        }));
+        ->add('feedbackTitle')->add('feedbackComments');
     }
     
     /**

@@ -40,34 +40,34 @@ class FeedbackController extends Controller
      * @Route("/new", name="feedback_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
-    {
+    // public function newAction(Request $request)
+    // {
 
-        $feedback = new Feedback();
+    //     $feedback = new Feedback();
 
-        //Set id of user connected
-        $user = $this->getUser();
-        $feedback->setIdUser($user);
+    //     //Set id of user connected
+    //     $user = $this->getUser();
+    //     $feedback->setIdUser($user);
 
-        // Set current date time of feedback
-        $feedback->setFeedbackDate(new \DateTime());
+    //     // Set current date time of feedback
+    //     $feedback->setFeedbackDate(new \DateTime());
 
-        $form = $this->createForm('AppBundle\Form\FeedbackType', $feedback);
-        $form->handleRequest($request);
+    //     $form = $this->createForm('AppBundle\Form\FeedbackType', $feedback);
+    //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($feedback);
-            $em->flush();
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $em = $this->getDoctrine()->getManager();
+    //         $em->persist($feedback);
+    //         $em->flush();
 
-            return $this->redirectToRoute('feedback_show', array('idFeedback' => $feedback->getIdfeedback()));
-        }
+    //         return $this->redirectToRoute('feedback_show', array('idFeedback' => $feedback->getIdfeedback()));
+    //     }
 
-        return $this->render('feedback/new.html.twig', array(
-            'feedback' => $feedback,
-            'form' => $form->createView(),
-        ));
-    }
+    //     return $this->render('feedback/new.html.twig', array(
+    //         'feedback' => $feedback,
+    //         'form' => $form->createView(),
+    //     ));
+    // }
 
     /**
      * Finds and displays a feedback entity.

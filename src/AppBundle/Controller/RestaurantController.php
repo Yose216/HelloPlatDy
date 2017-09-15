@@ -68,7 +68,7 @@ class RestaurantController extends Controller
      * Finds and displays a restaurant entity.
      *
      * @Route("/{idRestaurant}", name="restaurant_show")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
     public function showAction(Restaurant $restaurant, Request $request)
     {
@@ -77,7 +77,20 @@ class RestaurantController extends Controller
         $feedbackForm = "test";
 
         if ($this->isGranted('ROLE_USER') == true) {
+            $em = $this->getDoctrine()->getManager();
+
             $feedback = new Feedback;
+
+            //set user connected
+            $user = $this->getUser();
+            $feedback->setIdUser($user);
+
+            //Set restaurant id of feedback
+            $feedback->setIdRestaurant($restaurant);
+
+            // Set current date time of feedback
+            $feedback->setFeedbackDate(new \DateTime());
+
             $feedbackForm = $this->createForm('AppBundle\Form\FeedbackType', $feedback);
             $feedbackForm->handleRequest($request);
 
