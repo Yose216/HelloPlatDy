@@ -74,7 +74,7 @@ class RestaurantController extends Controller
     {
         $deleteForm = $this->createDeleteForm($restaurant);
 
-        $feedbackForm = "test";
+        $feedbackForm = "Hello world";
 
         if ($this->isGranted('ROLE_USER') == true) {
             $em = $this->getDoctrine()->getManager();

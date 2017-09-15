@@ -27,3 +27,5 @@ security:
         - { path: ^/admin, role: ROLE_SUPER_ADMIN }
         - { path: /restaurant/new, role: ROLE_RESTAURANT }
         - { path: /restaurant/[0-9]/edit, role: ROLE_RESTAURANT }
+        - { path: /discountcode/new, role: ROLE_RESTAURANT }
+        - { path: /discountcode/[0-9]/edit, role: ROLE_RESTAURANT }
