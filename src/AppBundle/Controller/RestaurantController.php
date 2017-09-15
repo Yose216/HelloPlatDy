@@ -74,7 +74,7 @@ class RestaurantController extends Controller
     {
         $deleteForm = $this->createDeleteForm($restaurant);
 
-        $feedbackForm = "Hello world";
+        $feedbackForm = null;
 
         if ($this->isGranted('ROLE_USER') == true) {
             $em = $this->getDoctrine()->getManager();
@@ -85,23 +85,28 @@ class RestaurantController extends Controller
             $user = $this->getUser();
             $feedback->setIdUser($user);
 
-            //Set restaurant id of feedback
-            $feedback->setIdRestaurant($restaurant);
+            // Verify user connected is not owner of restaurant
+            $idRestaurant = $em->getRepository('AppBundle:Restaurant')->find($user);
 
-            // Set current date time of feedback
-            $feedback->setFeedbackDate(new \DateTime());
+            if (empty($idRestaurant)) {
+                //Set restaurant id of feedback
+                $feedback->setIdRestaurant($restaurant);
 
-            $feedbackForm = $this->createForm('AppBundle\Form\FeedbackType', $feedback);
-            $feedbackForm->handleRequest($request);
+                // Set current date time of feedback
+                $feedback->setFeedbackDate(new \DateTime());
 
-            if ($feedbackForm->isSubmitted() && $feedbackForm->isValid()) {
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($feedback);
-                $em->flush();
+                $feedbackForm = $this->createForm('AppBundle\Form\FeedbackType', $feedback);
+                $feedbackForm->handleRequest($request);
 
-                return $this->redirectToRoute('restaurant_show', array('idRestaurant' => $restaurant->getIdrestaurant()));
+                if ($feedbackForm->isSubmitted() && $feedbackForm->isValid()) {
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($feedback);
+                    $em->flush();
+
+                    return $this->redirectToRoute('restaurant_show', array('idRestaurant' => $restaurant->getIdrestaurant()));
+                }
+                $feedbackForm = $feedbackForm->createView();
             }
-            $feedbackForm = $feedbackForm->createView();
         }
 
         return $this->render('restaurant/show.html.twig', array(
